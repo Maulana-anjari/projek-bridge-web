@@ -1,0 +1,84 @@
+.kotak-primary {
+	transition: .5s;
+	align-items: center;
+	justify-content: center;
+}
+.kotak-primary:hover {
+	background-color: #0d6efd;
+	color: white;
+}
+.kotak-secondary {
+	transition: .5s;
+	align-items: center;
+	justify-content: center;
+}
+.kotak-secondary:hover {
+	background-color: #6c757d;
+	color: white;
+}
+.kotak-success {
+	transition: .5s;
+	align-items: center;
+	justify-content: center;
+}
+.kotak-success:hover {
+	background-color: #198754;
+	color: white;
+}
+.kotak-danger {
+	transition: .5s;
+	align-items: center;
+	justify-content: center;
+}
+.kotak-danger:hover {
+	background-color: #dc3545;
+	color: white;
+}
+.kotak-warning {
+	transition: .5s;
+	align-items: center;
+	justify-content: center;
+}
+.kotak-warning:hover {
+	background-color: #ffc107;
+	color: white;
+}
+.kotak-info {
+	transition: .5s;
+	align-items: center;
+	justify-content: center;
+}
+.kotak-info:hover {
+	background-color: #0dcaf0;
+	color: white;
+}
+.kotak-dark {
+	transition: .5s;
+	align-items: center;
+	justify-content: center;
+}
+.kotak-dark:hover {
+	background-color: #212529;
+	color: white;
+}
+.kotak-light {
+	transition: .5s;
+	align-items: center;
+	justify-content: center;
+}
+.kotak-light:hover {
+	background-color: #f8f9fa;
+}
+
+.img-sm {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 2em;
+	margin-right: 2em;
+}
+.card-title {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
