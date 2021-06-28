@@ -5,28 +5,7 @@
 @endsection
 
 @section('tombol-nav')
-<div class="btn-toolbar mb-2 mb-md-0">
-	<div class="row">
-		<div class="col">
-		<form action="/absensi" method="post">
-			@csrf
-			<div class="row mb-2 form-group">
-				<label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
-				<div class="col-sm-10">
-					<input type="date" class="form-control shadow-sm" id="tanggal" name="tanggal">
-					@error('tanggal')
-						<div class="alert alert-danger mt-2">{{$message}}</div>
-					@enderror
-				</div>
-			</div>
-	    	<button type="submit" class="btn btn-sm btn-outline-dark"><span class="icon"></span>Tambah</button>
-	    </form>
-	    </div>
-	    <div class="col">
-	    <a href="" type="button" class="btn btn-sm btn-outline-secondary"><span class="icon"></span>Ekspor</a>
-	    </div>
-	</div>
-</div>
+
 @endsection
 
 @section('content')
@@ -43,6 +22,65 @@
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>		
 	</div>
 @endif
+<div class="card">
+	<div class="card-body">
+		<form action="/absensi" method="post">
+			@csrf
+			<div class="row mb-2 form-group">
+				<label for="kegiatan" class="col-sm-2 col-form-label">Kegiatan</label>
+				<div class="col-sm-10">
+					<select class="form-select shadow-sm" id="kegiatan" name="kegiatan" value="{{old('kegiatan')}}">
+						<option selected="true" disabled="disabled" value="">--<i>Pilih</i>--</option>
+						<option>Latihan</option>
+						<option>Event</option>
+						<option>Kejuaraan</option>
+					</select>
+					@error('kegiatan')
+						<div class="alert alert-danger mt-2">{{$message}}</div>
+					@enderror
+				</div>
+			</div>
+			<div class="row mb-2 form-group">
+				<label for="hari" class="col-sm-2 col-form-label">Hari</label>
+				<div class="col-sm-10">
+					<select class="form-select shadow-sm" id="hari" name="hari" value="{{old('hari')}}">
+						<option selected="true" disabled="disabled" value="">--<i>Pilih</i>--</option>
+						<option>Minggu</option>
+						<option>Senin</option>
+						<option>Selasa</option>
+						<option>Rabu</option>
+						<option>Kamis</option>
+						<option>Jumat</option>
+						<option>Sabtu</option>
+					</select>
+					@error('hari')
+						<div class="alert alert-danger mt-2">{{$message}}</div>
+					@enderror
+				</div>
+			</div>
+			<div class="row mb-2 form-group">
+				<label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
+				<div class="col-sm-10">
+					<input type="date" class="form-control shadow-sm" id="tanggal" name="tanggal" value="{{old('tanggal')}}">
+					@error('tanggal')
+						<div class="alert alert-danger mt-2">{{$message}}</div>
+					@enderror
+				</div>
+			</div>
+			<div class="row mb-2 form-group">
+				<label for="tempat" class="col-sm-2 col-form-label">Tempat</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control shadow-sm" id="tempat" name="tempat" value="{{old('tempat')}}">
+					@error('tempat')
+						<div class="alert alert-danger mt-2">{{$message}}</div>
+					@enderror
+				</div>
+			</div>
+	    	<button type="submit" class="btn btn-sm btn-primary"><span class="icon"></span>Tambah</button>
+		</form>
+	</div>
+</div>
+<hr>
 <div class="row row-cols-1 row-cols-md-2 g-4">
 	@foreach ($absences as $absence)
 	<div class="col">
@@ -64,7 +102,7 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-auto">
-								<a href="/absensi/{{$absence->tanggal}}/edit" class="btn btn-sm mb-1
+								<a href="/absensi/{{$absence->id}}" class="btn btn-sm mb-1
 									@if ($absence->kegiatan == NULL|| $absence->hari == NULL || $absence->tanggal == NULL)
 										btn-dark
 									@else

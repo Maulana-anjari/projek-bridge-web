@@ -26,7 +26,7 @@
 		<div class="col mb-2">
 			<div class="card shadow-sm">
 				<div class="card-body">
-				<form action="/absensi/{{$data_absence->tanggal}}" method="post">
+				<form action="/absensi/{{$data_absence->id}}" method="post">
 					@csrf
 					@method('PUT')
 					<div class="row mb-2 form-group">
@@ -201,7 +201,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@php $no = 1; @endphp
+					<!-- @php $no = 1; @endphp
 					@foreach ($attendances as $atd)
 					<tr>
 						<th scope="row">{{ $no++ }}</th>
@@ -216,7 +216,7 @@
 							</form>
 						</td>
 					</tr>
-					@endforeach
+					@endforeach -->
 				</tbody>
 			</table>
 		</div>
