@@ -15,9 +15,10 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->string('tanggal');
+            $table->integer('absen_id');
             $table->string('nama_atlet');
             $table->string('kehadiran');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

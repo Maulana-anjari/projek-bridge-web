@@ -35,84 +35,58 @@
 	<div class="row">
 		<div class="col mb-2">
 			<div class="card shadow-sm">
-				<div class="card-body">			
+				<div class="card-body">
+					<div class="row mb-2 form-group">
+						<div class="col-sm-2">Kategori</div>
+						<div class="col-sm-10">: {{$absence->kategori}}</div>
+					</div>	
 					<div class="row mb-2 form-group">
 						<div class="col-sm-2">Kegiatan</div>
-						<div class="col-sm-10">{{$absence->kegiatan}}</div>
+						<div class="col-sm-10">: {{$absence->kegiatan}}</div>
 					</div>
 					<div class="row mb-2 form-group">
 						<div class="col-sm-2">Hari</div>
-						<div class="col-sm-10">{{$absence->hari}}</div>
+						<div class="col-sm-10">: {{$absence->hari}}</div>
 					</div>
 					<div class="row mb-2 form-group">
 						<div class="col-sm-2">Tanggal</div>
-						<div class="col-sm-10">{{$absence->tanggal}}</div>
+						<div class="col-sm-10">: {{$absence->tanggal}}</div>
 					</div>
 					<div class="row mb-2 form-group">
 						<div class="col-sm-2">Tempat</div>
-						<div class="col-sm-10">{{$absence->tempat}}</div>
+						<div class="col-sm-10">: {{$absence->tempat}}</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col mb-2">
-			<div class="card shadow-sm">
-				<div class="card-body">
-					<form action="/absensi/atlet" method="post">
-					@csrf
-					<input type="text" name="tanggal" class="form-control shadow-sm mb-2" value="{{ $absence->tanggal }}" disabled="disabled">
-					<div class="row mb-2 form-group">
-						<label for="nama_atlet" class="col-sm-2 col-form-label">Nama</label>
-						<div class="col-sm-10">
-							<select class="form-select shadow-sm" id="nama_atlet" name="nama_atlet" value="{{old('nama_atlet')}}">
-								<option selected="true" disabled="disabled" value="">--<i>Pilih</i>--</option>
-								@foreach ($atlets as $a)
-								<option>{{ $a->nama }}</option>
-								@endforeach
-							</select>
-							@error('nama')
-								<div class="alert alert-danger mt-2">{{$message}}</div>
-							@enderror
-						</div>
-					</div>
-					<div class="row mb-2 form-group mt-2">
-						<label for="kehadiran" class="col-sm-2 col-form-label">Kehadiran</label>
-						<div class="col-sm-10">
-							<select class="form-select shadow-sm" id="kehadiran" name="kehadiran" value="{{old('kehadiran')}}">
-								<option selected="true" disabled="disabled" value="">--<i>Pilih</i>--</option>
-								<option>Hadir</option>
-								<option>Sakit</option>
-								<option>Ijin</option>
-								<option>Alpha</option>
-							</select>
-							@error('kehadiran')
-								<div class="alert alert-danger mt-2">{{$message}}</div>
-							@enderror
-						</div>
-					</div>
-					<button type="submit" class="btn btn-primary mt-2 d-grid mx-auto">Simpan</button>
-					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="card shadow-sm mb-4">
+	<div class="card shadow-sm mb-4 overflow-auto">
 		<div class="card-body">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">No</th>
-						<th scope="col">Tanggal</th>
 						<th scope="col">Nama</th>
 						<th scope="col">Kehadiran</th>
-						<th scope="col">Aksi</th>
+						<th scope="col">Keterangan</th>
 					</tr>
 				</thead>
 				<tbody>
-					
+					@php $no = 1; @endphp
+					@foreach ($attendances as $atd)
+					<tr>
+						<th scope="row">{{ $no++ }}</th>
+						<td>{{ $atd->nama_atlet }}</td>
+						<td>{{ $atd->kehadiran }}</td>
+						<td>{{ $atd->keterangan }}</td>
+					</tr>
+					@endforeach
 				</tbody>
 			</table>
+			<div class="d-flex pagination mb-1 justify-content-center">
+			{!! $attendances->links() !!}
+			</div>
 		</div>
 	</div>
 @endsection

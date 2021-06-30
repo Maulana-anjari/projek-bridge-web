@@ -26,6 +26,10 @@
 					<div class="col-9">: {{ $atlet->nama }}</div>
 				</div>
 				<div class="row">
+					<div class="col-3">NIK</div>
+					<div class="col-9">: {{ $atlet->nik }}</div>
+				</div>
+				<div class="row">
 					<div class="col-3">Email</div>
 					<div class="col-9">: {{ $atlet->email }}</div>
 				</div>

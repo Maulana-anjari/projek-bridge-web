@@ -35,6 +35,15 @@
 			</div>
 		</div>
 		<div class="row mb-2 form-group">
+			<label for="nik" class="col-sm-2 col-form-label">NIK</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control shadow-sm" id="nik" name="nik" value="{{old('nik') ? old('nik') : $data_atlet->nik}}">
+				@error('nik')
+					<div class="alert alert-danger mt-2">{{$message}}</div>
+				@enderror
+			</div>
+		</div>
+		<div class="row mb-2 form-group">
 			<label for="email" class="col-sm-2 col-form-label">Email</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control shadow-sm" id="email" name="email" value="{{old('email') ? old('email') : $data_atlet->email}}">

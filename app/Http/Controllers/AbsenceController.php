@@ -7,7 +7,8 @@ use App\Models\Atlet;
 use App\Models\Attendance;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-Use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection\Links;
 
 class AbsenceController extends Controller
 {
@@ -18,7 +19,7 @@ class AbsenceController extends Controller
      */
     public function index()
     {
-        $absences = Absence::all()->sortDesc();
+        $absences = Absence::paginate(10)->sortDesc();
         return view('absence.index', compact('absences'));
     }
 
@@ -27,12 +28,6 @@ class AbsenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $atlets = Absence::all();
-        return view('absence.create', compact('atlets'));
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -42,21 +37,20 @@ class AbsenceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'kategori' => 'required',
             'kegiatan' => 'required',
             'hari' => 'required',
             'tanggal' => 'required',
             'tempat' => 'required',
         ]);
         Absence::create([
+            'kategori' => $request->kategori,
             'kegiatan' => $request->kegiatan,
             'hari' => $request->hari,
             'tanggal' => $request->tanggal,
             'tempat' => $request->tempat,
-            'catatan' => $request->catatan,
-            'absensi' => $request->absensi,
-            'slug' => Str::slug($request->tanggal, '-'),
         ]);     
-        return redirect('/absensi')->with('status', 'Data berhasil ditambahkan');
+        return redirect('/absensi')->with('status', 'Data berhasil ditambahkan, silahkan menambahkan data kehadiran atlet!');
     }
 
     /**
@@ -69,9 +63,10 @@ class AbsenceController extends Controller
     {
         $atlets = Atlet::all();
         $absence = Absence::where('id', $id)->first();
+        $attendances = Attendance::where('absen_id', $id)->orderBy('nama_atlet', 'asc')->paginate(10);
         if($absence == null)
             abort(404);
-        return view('absence.single', compact('absence', 'atlets'));
+        return view('absence.single', compact('absence', 'atlets', 'attendances'));
     }
 
     /**
@@ -84,7 +79,8 @@ class AbsenceController extends Controller
     {
         $atlets = Atlet::all();
         $data_absence = Absence::find($id);
-        return view('absence.edit', compact('data_absence', 'atlets'));
+        $attendances = Attendance::where('absen_id', $id)->orderBy('nama_atlet', 'asc')->paginate(10);
+        return view('absence.edit', compact('data_absence', 'atlets', 'attendances'));
     }
 
     /**
@@ -97,14 +93,13 @@ class AbsenceController extends Controller
     public function update(Request $request, $id)
     {
         Absence::find($id)->update([
+            'kategori' => $request->kategori,
             'kegiatan' => $request->kegiatan,
             'hari' => $request->hari,
             'tanggal' => $request->tanggal,
             'tempat' => $request->tempat,
-            'absensi' => $request->absensi,
-            'slug' => Str::slug($request->tanggal, '-'),
         ]);
-        return redirect('/absensi')->with('updated', 'Data berhasil diupdate');
+        return redirect()->back()->with('updated', 'Data berhasil diupdate');
     }
 
     /**
@@ -121,20 +116,34 @@ class AbsenceController extends Controller
     public function delete_absen_atlet($id)
     {
         Attendance::find($id)->delete();
-        return redirect()->back()->with('updated', 'Data berhasil dihapus');
+        return redirect()->back()->with('destroy', 'Data berhasil dihapus');
     }
     public function absen_atlet(Request $request)
     {
         $request->validate([
-            'tanggal' => 'required',
+            'absen_id' => 'required',
             'nama_atlet' => 'required',
             'kehadiran' => 'required',
         ]);
+        $cek_double = Attendance::where(['absen_id' => $request->absen_id, 'nama_atlet' => $request->nama_atlet])
+                                    ->count();
+        if ($cek_double > 0) {
+            return redirect()->back()->with('double', 'Data sudah ada! Silahkan hapus terlebih dahulu jika ingin mengubah.');
+        }
         Attendance::create([
-            'tanggal' => $request->tanggal,
+            'absen_id' => $request->absen_id,
             'nama_atlet' => $request->nama_atlet,
             'kehadiran' => $request->kehadiran,
+            'keterangan' => $request->keterangan,
         ]);     
         return redirect()->back()->with('status', 'Data berhasil ditambahkan');
+    }
+    public function ekspor()
+    {
+        return view('absence.ekspor');
+    }
+    public function ekspor_data(Request $request)
+    {
+        
     }
 }

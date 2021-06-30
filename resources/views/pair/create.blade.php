@@ -1,13 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-	Absensi
+	Create Pair Match
 @endsection
-
-@section('tombol-nav')
-<div class="btn-toolbar mb-2 mb-md-0">
-	<a href="/absensi/ekspor" class="btn btn-outline-success btn-sm">Ekspor Absensi</a>
-</div>
+@section('menu')
+<a href="/pair-match" class="btn btn-outline-secondary btn-sm">Kembali</a>
 @endsection
 
 @section('content')
@@ -24,9 +21,10 @@
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>		
 	</div>
 @endif
+
 <div class="card">
 	<div class="card-body">
-		<form action="/absensi" method="post">
+		<form action="/pair-match" method="post">
 			@csrf
 			<div class="row mb-2 form-group">
 				<label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
@@ -88,82 +86,17 @@
 					@enderror
 				</div>
 			</div>
-	    	<button type="submit" class="btn btn-sm btn-primary"><span class="icon"></span>Tambah</button>
-		</form>
-	</div>
-</div>
-<hr>
-<div class="card">
-	<div class="card-body">
-		<div class="filter">
-			filter
-		</div>
-		<hr>
-		<div class="row row-cols-1 row-cols-md-2 g-4 mb-2">
-			@foreach ($absences as $absence)
-			<div class="col">
-				<div class="card border-secondary mb-2">
-					<div class="card-header {{ ($absence->kategori != 'Latihan') ? 'bg-dark' : '' }}">
-						<div class="row align-items-center">
-							<div class="col-8 {{ ($absence->kategori != 'Latihan') ? 'text-white' : '' }}">
-								<a href="/absensi/{{$absence->id}}" class="show-absensi {{ ($absence->kategori != 'Latihan') ? 'text-white' : 'text-dark' }}">{{ ucfirst($absence->kegiatan) }}</a>
-							</div>
-							<div class="col-4">
-								<div class="row">
-									<div class="col-auto">
-										<a href="/absensi/{{$absence->id}}/edit" class="btn btn-sm mb-1 btn-outline-primary">
-											Edit
-										</a>
-									</div>
-									<div class="col-auto">
-										<form action="/absensi/{{$absence->id}}" method="post">
-											@csrf
-											@method('DELETE')
-											<button class="btn btn-sm btn-outline-danger">
-												Hapus
-											</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-3">Hari</div>
-							<div class="col-9">: 
-								@if ($absence->hari == NULL)
-								Data belum diatur!
-								@else
-								{{ $absence->hari }}
-								@endif
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-3">Tanggal</div>
-							<div class="col-9">: 
-								@if ($absence->tanggal == NULL)
-								Data belum diatur!
-								@else
-								{{ $absence->tanggal }}
-								@endif
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-3">Tempat</div>
-							<div class="col-9">: 
-								@if ($absence->tempat == NULL)
-								Data belum diatur!
-								@else
-								{{ $absence->tempat }}
-								@endif
-							</div>
-						</div>
-					</div>
+			<div class="row mb-2 form-group">
+				<label for="file_pair" class="col-sm-2 col-form-label">Hasil Match</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair')}}">
+					@error('file_pair')
+						<div class="alert alert-danger mt-2">{{$message}}</div>
+					@enderror
 				</div>
 			</div>
-			@endforeach
-		</div>
+	    	<button type="submit" class="btn btn-sm btn-primary"><span class="icon"></span>Tambah</button>
+		</form>
 	</div>
 </div>
 @endsection

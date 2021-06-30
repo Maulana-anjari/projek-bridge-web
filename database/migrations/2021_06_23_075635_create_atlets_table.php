@@ -17,6 +17,7 @@ class CreateAtletsTable extends Migration
             $table->id()->autoIncrement();
             $table->string('nama');
             $table->string('email')->nullable();
+            $table->string('nik')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('provinsi')->nullable();

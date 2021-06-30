@@ -44,6 +44,7 @@ class AthleteController extends Controller
         Atlet::create([
             'nama' => $request->nama,
             'slug' => Str::slug($request->nama, '-'),
+            'nik' => $request->nik,
             'email' => $request->email,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -97,6 +98,7 @@ class AthleteController extends Controller
         Atlet::find($id)->update([
             'nama' => $request->nama,
             'slug' => Str::slug($request->nama, '-'),
+            'nik' => $request->nik,
             'email' => $request->email,
             'foto' => $request->foto,
             'tempat_lahir' => $request->tempat_lahir,
