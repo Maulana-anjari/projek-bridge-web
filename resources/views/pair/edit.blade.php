@@ -4,7 +4,7 @@
 	Edit Pair Match
 @endsection
 @section('menu')
-<a href="/absensi" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
+	<a href="/absensi" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
 @endsection
 
 @section('content')

@@ -4,7 +4,7 @@
 	Create Pair Match
 @endsection
 @section('menu')
-<a href="/pair-match" class="btn btn-outline-secondary btn-sm">Kembali</a>
+	<a href="/pair-match" class="btn btn-outline-secondary btn-sm">Kembali</a>
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@
 
 <div class="card">
 	<div class="card-body">
-		<form action="/pair-match" method="post">
+		<form action="/pair-match" method="post" enctype="multipart/form-data">
 			@csrf
 			<div class="row mb-2 form-group">
 				<label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
@@ -89,7 +89,7 @@
 			<div class="row mb-2 form-group">
 				<label for="file_pair" class="col-sm-2 col-form-label">Hasil Match</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair')}}">
+					<input type="file" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair')}}">
 					@error('file_pair')
 						<div class="alert alert-danger mt-2">{{$message}}</div>
 					@enderror
