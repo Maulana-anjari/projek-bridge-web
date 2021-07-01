@@ -95,8 +95,17 @@
 <hr>
 <div class="card">
 	<div class="card-body">
-		<div class="filter">
-			filter
+		<div class="row">
+			<label for="filter-rentang-waktu" class="col-form-label col-sm-2">Filter Waktu</label>
+			<div class="col-sm-2">
+				<select id="filter-rentang-waktu" name="filter-rentang-waktu" class="form-select shadow-sm filter">
+					<option selected="true" disabled="disabled" value="">--<i>Pilih</i>--</option>
+					<option value="1">Harian</option>
+					<option value="2">Mingguan</option>
+					<option value="3">Bulanan</option>
+					<option value="4">Tahunan</option>
+				</select>
+			</div>
 		</div>
 		<hr>
 		<div class="row row-cols-1 row-cols-md-2 g-4 mb-2">

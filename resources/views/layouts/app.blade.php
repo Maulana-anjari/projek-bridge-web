@@ -96,19 +96,8 @@
 	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/assets/js/dashboard.js"></script>
 	<script type="text/javascript" src="/assets/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/js/app.js"></script>
-	<script>
-    /** tambah class active jika di klik */
-    var url = window.location;
-	// ini untuk menambahkan class active pada menu yg tidak memiliki anak atau single link
-	$('ul.sidebar-menu a').filter(function() {
-	 return this.href == url;
-	}).parent().addClass('active');
-	// ini untuk menu beranak, jadi otomatis akan terbuka sesuai dengan link tujuan
-	$('ul.treeview-menu a').filter(function() {
-	 return this.href == url;
-	}).parentsUntil(".sidebar-menu > .treeview-menu").addClass('active');
-	</script>
 </body>
 
 </html>
