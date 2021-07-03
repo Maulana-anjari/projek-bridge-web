@@ -40,27 +40,22 @@ class PairController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'kategori' => 'required',
-        //     'kegiatan' => 'required',
-        //     'hari' => 'required',
-        //     'tanggal' => 'required',
-        //     'tempat' => 'required',
-        //     'file_pair' => 'required',
-        // ]);
-        // Pair::create([
-        //     'kategori' => $request->kategori,
-        //     'kegiatan' => $request->kegiatan,
-        //     'hari' => $request->hari,
-        //     'tanggal' => $request->tanggal,
-        //     'tempat' => $request->tempat,
-        //     'file_pair' => $request->file_pair,
-        // ]);
-        // $path = $request->file('file_pair')->store('public/pair-results');
-        // $path = Storage::putFile('public/pair-results', $request->file('file_pair'));
-        // $path = $request->file('file_pair')->storeAs('public/pair-results', 'match');
-        
-        dd($path);
+        $request->validate([
+            'kategori' => 'required',
+            'kegiatan' => 'required',
+            'hari' => 'required',
+            'tanggal' => 'required',
+            'tempat' => 'required',
+            'file_pair' => 'required',
+        ]);
+        Pair::create([
+            'kategori' => $request->kategori,
+            'kegiatan' => $request->kegiatan,
+            'hari' => $request->hari,
+            'tanggal' => $request->tanggal,
+            'tempat' => $request->tempat,
+            'file_pair' => $request->file_pair,
+        ]);
         return redirect()->back()->with('status', 'Data berhasil ditambahkan');
     }
 
@@ -72,7 +67,10 @@ class PairController extends Controller
      */
     public function show($id)
     {
-        //
+        $pair = Pair::find($id)->first();
+        if($pair == null)
+            abort(404);
+        return view('pair.single', compact('pair'));
     }
 
     /**
@@ -83,7 +81,8 @@ class PairController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_pair = Pair::find($id);
+        return view('pair.edit', compact('data_pair'));
     }
 
     /**
@@ -95,7 +94,15 @@ class PairController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Pair::find($id)->update([
+            'kategori' => $request->kategori,
+            'kegiatan' => $request->kegiatan,
+            'hari' => $request->hari,
+            'tanggal' => $request->tanggal,
+            'tempat' => $request->tempat,
+            'file_pair' => $request->file_pair,
+        ]);
+        return redirect()->back()->with('status', 'Data berhasil diupdate');
     }
 
     /**
@@ -106,6 +113,7 @@ class PairController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pair::find($id)->delete();
+        return redirect()->back()->with('destroy', 'Data berhasil dihapus');
     }
 }

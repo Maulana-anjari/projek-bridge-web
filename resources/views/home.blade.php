@@ -6,8 +6,8 @@
 
 @section('content')
 <div class="description">
-	<h4>Selamat Datang!</h4>
-	<p>Silahkan memilih fitur di bawah ini untuk memulai.</p>
+	<h4>Selamat Datang Manager!</h4>
+	<p>Silahkan memilih fitur di bawah ini untuk memulai. Semoga harimu menyengangkan :)</p>
 </div>
 <div class="row row-cols-1 row-cols-md-5 g-3 mt-3 mb-4">
 	<div class="col tempat-kotak">
@@ -50,10 +50,10 @@
 				<img src="" class="card-img-top" alt="">
 				<div class="card-body card-menu">
 					<div class="row">
-						<div class="col-2">
+						<div class="col-4">
 							<img src="/icon/versus.png" class="img-sm float-start">
 						</div>
-						<div class="col-10">
+						<div class="col-8">
 							<h6 class="card-title float-end">Pair Match</h6>
 						</div>
 					</div>

@@ -17,7 +17,7 @@ use App\Http\Controllers\TeamController;
 // Route::delete('/artikel/{id}', [ArticleController::class,'destroy']);
 */
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 Route::get('/home', function () {
     return view('home');

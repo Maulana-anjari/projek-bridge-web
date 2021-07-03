@@ -26,7 +26,7 @@
 	  <div class="tagline">Gabungan Bridge Kulon Progo</div>
 	  <div class="navbar-nav">
 	    <div class="nav-item text-nowrap">
-	      <a class="nav-link px-3" href="#">Sign out</a>
+	      <a class="nav-link px-3" href="/">Sign out</a>
 	    </div>
 	  </div>
 	</header>
@@ -89,8 +89,6 @@
 	    </main>
 	  </div>
 	</div>
-
-		
 
 
 	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>

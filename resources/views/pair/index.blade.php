@@ -36,17 +36,17 @@
 					<div class="card-header {{ ($match->kategori != 'Latihan') ? 'bg-dark' : '' }}">
 						<div class="row align-items-center">
 							<div class="col-8 {{ ($match->kategori != 'Latihan') ? 'text-white' : '' }}">
-								<a href="/absensi/{{$match->id}}" class="show-absensi {{ ($match->kategori != 'Latihan') ? 'text-white' : 'text-dark' }}">{{ ucfirst($match->kegiatan) }}</a>
+								<a href="/pair-match/{{$match->id}}" class="show-pair {{ ($match->kategori != 'Latihan') ? 'text-white' : 'text-dark' }}">{{ ucfirst($match->kegiatan) }}</a>
 							</div>
 							<div class="col-4">
 								<div class="row">
 									<div class="col-auto">
-										<a href="/absensi/{{$match->id}}/edit" class="btn btn-sm mb-1 btn-outline-primary">
+										<a href="/pair-match/{{$match->id}}/edit" class="btn btn-sm mb-1 btn-outline-primary">
 											Edit
 										</a>
 									</div>
 									<div class="col-auto">
-										<form action="/absensi/{{$match->id}}" method="post">
+										<form action="/pair-match/{{$match->id}}" method="post">
 											@csrf
 											@method('DELETE')
 											<button class="btn btn-sm btn-outline-danger">
