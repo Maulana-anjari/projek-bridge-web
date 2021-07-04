@@ -56,7 +56,7 @@ class PairController extends Controller
             'tempat' => $request->tempat,
             'file_pair' => $request->file_pair,
         ]);
-        return redirect()->back()->with('status', 'Data berhasil ditambahkan');
+        return redirect('pair-match')->with('status', 'Data berhasil ditambahkan');
     }
 
     /**

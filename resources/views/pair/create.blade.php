@@ -89,7 +89,7 @@
 			<div class="row mb-2 form-group">
 				<label for="file_pair" class="col-sm-2 col-form-label">Hasil Match</label>
 				<div class="col-sm-10">
-					<input type="file" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair')}}">
+					<input type="text" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair')}}">
 					@error('file_pair')
 						<div class="alert alert-danger mt-2">{{$message}}</div>
 					@enderror

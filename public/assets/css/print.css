@@ -1,0 +1,18 @@
+.page-header {
+	font-family: Cambria;
+	text-align: center;
+	justify-content: center;
+}
+.hr-kop {
+	border: 2px solid black;
+}
+.img-kop {
+	height: 75pt;
+	justify-content: end;
+}
+.page-header p {
+	font-size: 11px;
+}
+.table-absensi {
+	font-size: 16px;
+}

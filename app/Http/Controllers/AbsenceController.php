@@ -144,6 +144,11 @@ class AbsenceController extends Controller
     }
     public function ekspor_data(Request $request)
     {
-        
+        $data = '';
+                // ->where('tanggal', $request->bulan)
+                // ->where('tanggal', $request->tahun);
+        $name = 'Absensi-'. $request->kategori . '-' . $request->bulan . '-' . $request->tahun . '.pdf';
+        $pdf = \PDF::loadView('pdf.print_absence');
+        return $pdf->stream('Absensi-'. $request->kategori . '-' . $request->bulan . '-' . $request->tahun . '.pdf');
     }
 }

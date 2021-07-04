@@ -26,7 +26,7 @@
 @endif
 <div class="card">
 	<div class="card-body">
-		<form action="/absensi/ekspor-data" method="post">
+		<form action="/absensi/ekspor-data" method="get" target="_blank">
 			@csrf
 			<div class="row mb-2 form-group">
 				<label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
@@ -44,25 +44,40 @@
 				</div>
 			</div>
 			<div class="row mb-2 form-group">
-				<label for="tanggal_awal" class="col-sm-2 col-form-label">Tanggal Awal</label>
+				<label for="bulan" class="col-sm-2 col-form-label">Bulan</label>
 				<div class="col-sm-10">
-					<input type="date" class="form-control shadow-sm" id="tanggal_awal" name="tanggal_awal" value="{{old('tanggal_awal')}}">
-					@error('tanggal_awal')
+					<select class="form-select shadow-sm" id="bulan" name="bulan" value="{{old('bulan')}}">
+						<option selected="true" disabled="disabled" value="">--<i>Pilih</i>--</option>
+						<option value="01">Januari</option>
+						<option value="02">Februari</option>
+						<option value="03">Maret</option>
+						<option value="04">April</option>
+						<option value="05">Mei</option>
+						<option value="06">Juni</option>
+						<option value="07">Juli</option>
+						<option value="08">Agustus</option>
+						<option value="09">September</option>
+						<option value="10">Oktober</option>
+						<option value="11">November</option>
+						<option value="12">Desember</option>
+					</select>
+					@error('bulan')
 						<div class="alert alert-danger mt-2">{{$message}}</div>
 					@enderror
 				</div>
 			</div>
 			<div class="row mb-2 form-group">
-				<label for="tanggal_akhir" class="col-sm-2 col-form-label">Tanggal Akhir</label>
+				<label for="tahun" class="col-sm-2 col-form-label">Tahun</label>
 				<div class="col-sm-10">
-					<input type="date" class="form-control shadow-sm" id="tanggal_akhir" name="tanggal_akhir" value="{{old('tanggal_akhir')}}">
-					@error('tanggal_akhir')
+					<input type="text" class="form-control shadow-sm" id="tahun" name="tahun" value="{{old('tahun')}}" placeholder="">
+					@error('tahun')
 						<div class="alert alert-danger mt-2">{{$message}}</div>
 					@enderror
 				</div>
 			</div>
-	    	<button type="submit" class="btn btn-sm btn-primary"><span class="icon"></span>Ekspor</button>
+	    	<button type="submit" class="btn btn-sm btn-primary"><span class="icon"></span>Print PDF</button>
 		</form>
+		<!-- <a href="/absensi/ekspor-data" class="btn btn-danger" target="_blank">PRINT</a> -->
 	</div>
 </div>
 @endsection
