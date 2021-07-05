@@ -49,9 +49,15 @@
 	            </a>
 	          </li>
 	          <li class="nav-item">
-	            <a class="nav-link {{ (request()->segment(1) == 'absensi') ? 'active' : '' }}" href="/absensi">
+	            <a class="nav-link {{ (request()->segment(1) == 'absensi') && (request()->segment(2) != 'ekspor') ? 'active' : '' }}" href="/absensi">
 	              <span data-feather="shopping-cart"></span>
 	              Absensi
+	            </a>
+	          </li>
+	          <li class="nav-item">
+	            <a class="nav-link {{ (request()->segment(2) == 'ekspor') ? 'active' : '' }}" href="/absensi/ekspor">
+	              <span data-feather="shopping-cart"></span>
+	              Ekspor Absensi Pelatkab
 	            </a>
 	          </li>
 	          <li class="nav-item">

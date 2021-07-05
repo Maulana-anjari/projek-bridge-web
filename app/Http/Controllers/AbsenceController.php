@@ -111,19 +111,23 @@ class AbsenceController extends Controller
     public function destroy($id)
     {
         Absence::find($id)->delete();
+        Attendance::where('absen_id', $id)->delete();
         return redirect('/absensi')->with('destroy', 'Data berhasil dihapus');
     }
+
     public function delete_absen_atlet($id)
     {
         Attendance::find($id)->delete();
         return redirect()->back()->with('destroy', 'Data berhasil dihapus');
     }
+
     public function absen_atlet(Request $request)
     {
         $request->validate([
             'absen_id' => 'required',
             'nama_atlet' => 'required',
             'kehadiran' => 'required',
+            'tanggal' => 'required',
         ]);
         $cek_double = Attendance::where(['absen_id' => $request->absen_id, 'nama_atlet' => $request->nama_atlet])
                                     ->count();
@@ -135,20 +139,44 @@ class AbsenceController extends Controller
             'nama_atlet' => $request->nama_atlet,
             'kehadiran' => $request->kehadiran,
             'keterangan' => $request->keterangan,
+            'tanggal' => $request->tanggal,
         ]);     
         return redirect()->back()->with('status', 'Data berhasil ditambahkan');
     }
+
     public function ekspor()
     {
         return view('absence.ekspor');
     }
+
     public function ekspor_data(Request $request)
     {
-        $data = '';
-                // ->where('tanggal', $request->bulan)
-                // ->where('tanggal', $request->tahun);
-        $name = 'Absensi-'. $request->kategori . '-' . $request->bulan . '-' . $request->tahun . '.pdf';
-        $pdf = \PDF::loadView('pdf.print_absence');
-        return $pdf->stream('Absensi-'. $request->kategori . '-' . $request->bulan . '-' . $request->tahun . '.pdf');
+        $atlets = Atlet::all();
+        $awal = $request->tanggal_awal;
+        $akhir = $request->tanggal_akhir;
+        $year = date('Y', strtotime($awal));
+        $tanggal_paraf = date('d F Y', strtotime($akhir));
+        $dataAbsen = Absence::whereBetween('tanggal', [$awal, $akhir])->get();
+        $dataKehadiran = Attendance::whereBetween('tanggal', [$awal, $akhir])->get();
+        // $tanggal_kehadiran = date('d-m-Y', strtotime($dataAbsen->tanggal));
+        $bulan = date('m', strtotime($awal));
+        return view('absence.print', compact(
+            'dataAbsen', 
+            'dataKehadiran', 
+            'year', 
+            'tanggal_paraf', 
+            'bulan',
+            'atlets',
+        ));
+    }
+
+    public function ekspor_lain($id)
+    {
+        \Carbon\Carbon::setLocale('id');
+        $data_absence = Absence::find($id);
+        $attendances = Attendance::where('absen_id', $id)->orderBy('nama_atlet', 'asc')->get();
+        $year = date('Y', strtotime($data_absence->tanggal));
+        $tanggal_paraf = date('d F Y', strtotime($data_absence->tanggal));
+        return view('absence.print-lain', compact('data_absence', 'year', 'tanggal_paraf', 'attendances'));
     }
 }

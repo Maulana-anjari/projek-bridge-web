@@ -34,45 +34,18 @@
     <div class="row">
       <div class="col-12 page-header">
         <div class="hr-kop mb-2"></div>
-        <h6>DAFTAR HADIR PELATKAB</h6>
+        <h6>DAFTAR HADIR {{ strtoupper($data_absence->kategori) }}</h6>
         <h6>CABOR BRIDGE TAHUN {{ $year }}</h6>
       </div>
     </div>
     <div class="row justify-content-start mt-2">
-      <div class="col-2">Bulan</div>
-      <div class="col-8">: 
-        @if($bulan == '01')
-        Januari
-        @elseif($bulan == '02')
-        Februari
-        @elseif($bulan == '03')
-        Maret
-        @elseif($bulan == '04')
-        April
-        @elseif($bulan == '05')
-        Mei
-        @elseif($bulan == '06')
-        Juni
-        @elseif($bulan == '07')
-        Juli
-        @elseif($bulan == '08')
-        Agustus
-        @elseif($bulan == '09')
-        September
-        @elseif($bulan == '10')
-        Oktober
-        @elseif($bulan == '11')
-        November
-        @elseif($bulan == '12')
-        Desember
-        @endif
-      </div>
+      <div class="col-2">Tanggal</div><div class="col-8">: {{ $tanggal_paraf }}</div>
     </div>
     <div class="row justify-content-start">
-      <div class="col-2">Tempat</div><div class="col-8">: Balai Desa Brosot</div>
+      <div class="col-2">Tempat</div><div class="col-8">: {{ $data_absence->tempat }}</div>
     </div>
     <div class="row justify-content-start">
-      <div class="col-2">Acara</div><div class="col-8">: Latihan</div>
+      <div class="col-2">Acara</div><div class="col-8">: {{ $data_absence->kegiatan }}</div>
     </div>
 
     <!-- Table row -->
@@ -80,31 +53,40 @@
       <div class="col-12 table-responsive">
         <table class="table table-bordered table-absensi">
           <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Atlet</th>
-            @foreach($dataAbsen as $data)
-            <th>{{ $data->tanggal }}</th>
-            @endforeach
-          </tr>
+            <tr>
+              <th scope="col" class="text-center">No</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Kehadiran</th>
+              <th scope="col">Keterangan</th>
+            </tr>
           </thead>
           <tbody>
-            <?php $no=1 ?>
-            @foreach($atlets as $data)
-              <tr>
-                <td>{{ $no++ }}</td>
-                <td>{{ $data->nama }}</td>
-              </tr>
+            @php $no = 1; @endphp
+            @foreach ($attendances as $atd)
+            <tr>
+              <th scope="row" class="text-center">{{ $no++ }}</th>
+              <td>{{ $atd->nama_atlet }}</td>
+              <td>{{ $atd->kehadiran }}</td>
+              <td>
+                @if($atd->keterangan == null)
+                -
+                @else
+                {{ $atd->keterangan }}
+                @endif
+              </td>
+            </tr>
             @endforeach
           </tbody>
         </table>
+        <div class="d-flex pagination mb-1 justify-content-center">
+        </div>
       </div>
-      <!-- /.col -->
     </div>
+
     <div class="row justify-content-end mt-2">
       <div class="col-4 text-center">
         <p class="mb-0">Kulon Progo, {{ $tanggal_paraf }}</p>
-        <p>Manager</p>
+        <p>Manajer</p>
         <br><br><br><br>
         <p>Heru Sarjana, S.Pd</p>
       </div>
@@ -115,7 +97,7 @@
 <!-- ./wrapper -->
 <!-- Page specific script -->
 <script>
-  // window.addEventListener("load", window.print());
+  window.addEventListener("load", window.print());
 </script>
 </body>
 </html>

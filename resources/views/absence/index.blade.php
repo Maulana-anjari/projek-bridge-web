@@ -6,7 +6,7 @@
 
 @section('tombol-nav')
 <div class="btn-toolbar mb-2 mb-md-0">
-	<a href="/absensi/ekspor" class="btn btn-outline-success btn-sm">Ekspor Absensi</a>
+	<a href="/absensi/ekspor" class="btn btn-success btn-sm">Ekspor Absensi Pelatkab</a>
 </div>
 @endsection
 
@@ -112,10 +112,10 @@
 			@foreach ($absences as $absence)
 			<div class="col">
 				<div class="card border-secondary mb-2">
-					<div class="card-header {{ ($absence->kategori != 'Latihan') ? 'bg-dark' : '' }}">
+					<div class="card-header {{ ($absence->kategori == 'Pelatkab') ? 'bg-dark' : '' }}">
 						<div class="row align-items-center">
-							<div class="col-8 {{ ($absence->kategori != 'Latihan') ? 'text-white' : '' }}">
-								<a href="/absensi/{{$absence->id}}" class="show-absensi {{ ($absence->kategori != 'Latihan') ? 'text-white' : 'text-dark' }}">{{ ucfirst($absence->kegiatan) }}</a>
+							<div class="col-8 {{ ($absence->kategori == 'Pelatkab') ? 'text-white' : '' }}">
+								<a href="/absensi/{{$absence->id}}" class="show-absensi {{ ($absence->kategori == 'Pelatkab') ? 'text-white' : 'text-dark' }}">{{ ucfirst($absence->kegiatan) }}</a>
 							</div>
 							<div class="col-4">
 								<div class="row">

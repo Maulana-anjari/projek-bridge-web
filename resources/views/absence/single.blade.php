@@ -6,9 +6,12 @@
 
 @section('tombol-nav')
 <div class="btn-toolbar mb-2 mb-md-0">
-	<div class="btn-group me-2">
+	<div class="btn-group me-3">
 	    <a href="/absensi" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
-	    <a href="/absensi/{{$absence->id}}/edit" class="btn btn-outline-success btn-sm">Edit</a>
+	    <a href="/absensi/{{$absence->id}}/edit" class="btn btn-success btn-sm">Edit</a>
+	    @if($absence->kategori != 'Pelatkab')
+	    <a href="/absensi/ekspor-lain/{{$absence->id}}" target="_blank" class="btn btn-warning btn-sm">Ekspor</a>
+	    @endif
 	</div>
 	<form action="/absensi/{{$absence->id}}" method="post">
 		@csrf
@@ -37,24 +40,24 @@
 			<div class="card shadow-sm">
 				<div class="card-body">
 					<div class="row mb-2 form-group">
-						<div class="col-sm-2">Kategori</div>
-						<div class="col-sm-10">: {{$absence->kategori}}</div>
+						<div class="col-2">Kategori</div>
+						<div class="col-6">: {{$absence->kategori}}</div>
 					</div>	
 					<div class="row mb-2 form-group">
-						<div class="col-sm-2">Kegiatan</div>
-						<div class="col-sm-10">: {{$absence->kegiatan}}</div>
+						<div class="col-2">Kegiatan</div>
+						<div class="col-6">: {{$absence->kegiatan}}</div>
 					</div>
 					<div class="row mb-2 form-group">
-						<div class="col-sm-2">Hari</div>
-						<div class="col-sm-10">: {{$absence->hari}}</div>
+						<div class="col-2">Hari</div>
+						<div class="col-6">: {{$absence->hari}}</div>
 					</div>
 					<div class="row mb-2 form-group">
-						<div class="col-sm-2">Tanggal</div>
-						<div class="col-sm-10">: {{$absence->tanggal}}</div>
+						<div class="col-2">Tanggal</div>
+						<div class="col-6">: {{$absence->tanggal}}</div>
 					</div>
 					<div class="row mb-2 form-group">
-						<div class="col-sm-2">Tempat</div>
-						<div class="col-sm-10">: {{$absence->tempat}}</div>
+						<div class="col-2">Tempat</div>
+						<div class="col-6">: {{$absence->tempat}}</div>
 					</div>
 				</div>
 			</div>

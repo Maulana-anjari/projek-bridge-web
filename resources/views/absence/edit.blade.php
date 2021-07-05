@@ -5,7 +5,14 @@
 @endsection
 
 @section('menu')
-	<a href="/absensi" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
+<div class="btn-toolbar mb-2 mb-md-0">
+	<div class="btn-group me-3">
+		<a href="/absensi" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
+		@if($data_absence->kategori != 'Pelatkab')
+	    <a href="/absensi/ekspor-lain/{{$data_absence->id}}" target="_blank" class="btn btn-warning border-secondary btn-sm">Ekspor</a>
+	    @endif
+	</div>
+</div>
 @endsection
 
 @section('content')
@@ -173,6 +180,7 @@
 					<form action="/absensi/atlet" method="post">
 					@csrf
 					<input type="text" name="absen_id" class="form-control shadow-sm mb-2" value="{{ $data_absence->id }}" hidden>
+					<input type="text" name="tanggal" class="form-control shadow-sm mb-2" value="{{ $data_absence->tanggal }}" hidden>
 					<div class="row mb-2 form-group">
 						<label for="nama_atlet" class="col-sm-3 col-form-label">Nama</label>
 						<div class="col-sm-9">

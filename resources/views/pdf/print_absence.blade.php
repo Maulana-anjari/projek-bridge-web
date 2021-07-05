@@ -6,9 +6,8 @@
   <title>Absensi Pelatkab</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/assets/css/print.css">
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 </head>
 <body>
 <div class="wrapper">

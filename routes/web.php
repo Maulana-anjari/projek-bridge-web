@@ -32,6 +32,7 @@ Route::post('absensi/atlet', [AbsenceController::class, 'absen_atlet']);
 Route::delete('absensi/atlet/{id}', [AbsenceController::class, 'delete_absen_atlet']);
 Route::get('absensi/ekspor', [AbsenceController::class, 'ekspor']);
 Route::get('absensi/ekspor-data', [AbsenceController::class, 'ekspor_data']);
+Route::get('absensi/ekspor-lain/{id}', [AbsenceController::class, 'ekspor_lain']);
 Route::resource('absensi', AbsenceController::class);
 Route::resource('pair-match', PairController::class);
 Route::resource('team-match', TeamController::class);
