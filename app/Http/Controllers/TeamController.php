@@ -56,7 +56,7 @@ class TeamController extends Controller
             'tempat' => $request->tempat,
             'file_team' => $request->file_team,
         ]);
-        return redirect()->back()->with('status', 'Data berhasil ditambahkan');
+        return redirect('team-match')->with('status', 'Data berhasil ditambahkan');
     }
 
     /**

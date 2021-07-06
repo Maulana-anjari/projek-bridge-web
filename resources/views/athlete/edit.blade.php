@@ -143,5 +143,6 @@
 			</div>
 		</div>
 		<button type="submit" class="btn btn-primary mt-2 mb-4">Simpan</button>
+		<a href="/atlet" class="btn btn-outline-secondary mt-2 mb-4">Kembali</a>
 	</form>
 @endsection

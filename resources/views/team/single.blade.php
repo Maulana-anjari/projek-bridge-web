@@ -24,8 +24,35 @@
 
 <div class="card">
 	<div class="card-body">
-		<div class="row row-cols-1 row-cols-md-2 g-4 mb-2">
-			
+		<div class="row">
+			<div class="col mb-2">
+				<div class="row mb-2 form-group">
+					<div class="col-2">Kategori</div>
+					<div class="col-6">: {{$team->kategori}}</div>
+				</div>	
+				<div class="row mb-2 form-group">
+					<div class="col-2">Kegiatan</div>
+					<div class="col-6">: {{$team->kegiatan}}</div>
+				</div>
+				<div class="row mb-2 form-group">
+					<div class="col-2">Hari</div>
+					<div class="col-6">: {{$team->hari}}</div>
+				</div>
+				<div class="row mb-2 form-group">
+					<div class="col-2">Tanggal</div>
+					<div class="col-6">: {{$team->tanggal}}</div>
+				</div>
+				<div class="row mb-2 form-group">
+					<div class="col-2">Tempat</div>
+					<div class="col-6">: {{$team->tempat}}</div>
+				</div>
+				<div class="row mb-2 form-group">
+					<div class="col-2">Hasil Match</div>
+					<div class="col-4">: {{$team->file_team}}</div>
+				</div>
+				<a href="" class="btn btn-sm btn-success">Unduh Hasil Match</a>
+				<a href="/team-match" class="btn btn-sm btn-outline-secondary">Kembali</a>
+			</div>
 		</div>
 	</div>
 </div>

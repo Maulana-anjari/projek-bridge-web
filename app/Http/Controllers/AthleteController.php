@@ -112,7 +112,7 @@ class AthleteController extends Controller
             'rw' => $request->rw,
             'kode_pos' => $request->kode_pos,
         ]);
-        return redirect('/atlet')->with('updated', 'Data berhasil diubah');
+        return redirect()->back()->with('updated', 'Data berhasil diubah');
     }
 
     /**
