@@ -105,6 +105,9 @@
 			</div>
 			@endforeach
 		</div>
+		<div class="d-flex pagination mb-1 justify-content-center">
+			{{ $match->links() }}
+		</div>
 	</div>
 </div>
 @endsection

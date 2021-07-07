@@ -93,7 +93,7 @@
 	</div>
 </div>
 <hr>
-<div class="card">
+<div class="card mb-4">
 	<div class="card-body">
 		<div class="row">
 			<label for="filter-rentang-waktu" class="col-form-label col-sm-2">Filter Waktu</label>
@@ -108,7 +108,7 @@
 			</div>
 		</div>
 		<hr>
-		<div class="row row-cols-1 row-cols-md-2 g-4 mb-2">
+		<div class="row row-cols-1 row-cols-md-2 g-4">
 			@foreach ($absences as $absence)
 			<div class="col">
 				<div class="card border-secondary mb-2">
@@ -172,6 +172,9 @@
 				</div>
 			</div>
 			@endforeach
+		</div>
+		<div class="d-flex pagination mb-1 justify-content-center">
+			{{ $absences->links() }}
 		</div>
 	</div>
 </div>

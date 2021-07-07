@@ -80,4 +80,7 @@
 		@endforeach
 	</tbody>
 </table>
+<div class="d-flex pagination mb-1 justify-content-center">
+	{{ $atlets->links() }}
+</div>
 @endsection

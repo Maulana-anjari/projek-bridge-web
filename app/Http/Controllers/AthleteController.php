@@ -15,7 +15,7 @@ class AthleteController extends Controller
      */
     public function index()
     {
-        $atlets = Atlet::all();
+        $atlets = Atlet::orderby('id', 'asc')->paginate(20);
         return view('athlete.index', compact('atlets'));
     }
 

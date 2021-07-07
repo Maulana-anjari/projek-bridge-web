@@ -18,7 +18,7 @@ class PairController extends Controller
      */
     public function index()
     {
-        $matches = Pair::paginate(10)->sortDesc();
+        $matches = Pair::orderby('id', 'desc')->paginate(20);
         return view('pair.index', compact('matches'));
     }
 

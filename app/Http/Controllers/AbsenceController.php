@@ -19,7 +19,7 @@ class AbsenceController extends Controller
      */
     public function index()
     {
-        $absences = Absence::paginate(10)->sortDesc();
+        $absences = Absence::orderby('id', 'desc')->paginate(16);
         return view('absence.index', compact('absences'));
     }
 
