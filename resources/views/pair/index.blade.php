@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts-kita.app')
 
 @section('title')
 	Pair Match
@@ -105,7 +105,7 @@
 			@endforeach
 		</div>
 		<div class="d-flex pagination mb-1 justify-content-center">
-			{{ $match->links() }}
+			{{ $matches->links() }}
 		</div>
 	</div>
 </div>

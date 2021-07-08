@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts-kita.app')
 
 @section('title')
 	Create Pair Match

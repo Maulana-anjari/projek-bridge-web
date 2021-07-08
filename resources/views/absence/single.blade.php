@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts-kita.app')
 
 @section('title')
 	Absensi
@@ -9,9 +9,7 @@
 	<div class="btn-group me-3">
 	    <a href="/absensi" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
 	    <a href="/absensi/{{$absence->id}}/edit" class="btn btn-success btn-sm">Edit</a>
-	    @if($absence->kategori != 'Pelatkab')
 	    <a href="/absensi/ekspor-lain/{{$absence->id}}" target="_blank" class="btn btn-warning btn-sm">Ekspor</a>
-	    @endif
 	</div>
 	<form action="/absensi/{{$absence->id}}" method="post">
 		@csrf

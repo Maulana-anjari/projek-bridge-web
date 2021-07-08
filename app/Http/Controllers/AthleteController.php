@@ -13,6 +13,11 @@ class AthleteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $atlets = Atlet::orderby('id', 'asc')->paginate(20);

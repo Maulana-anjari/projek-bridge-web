@@ -10,3 +10,22 @@
 .show-team {
 	text-decoration: none;
 }
+.sign-out {
+	cursor: pointer;
+	text-align: center;
+	justify-content: center;
+	margin: auto;
+	background-color: transparent;
+	border: none;
+}
+.btn-sign-out button {
+	border: none;
+	background-color: transparent;
+}
+.btn-sign-out:hover {
+	background-color: black;
+	color: #0071bc;
+}
+.btn-sign-out button:hover {
+	color: #0071bc;
+}

@@ -17,6 +17,11 @@ class AbsenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $absences = Absence::orderby('id', 'desc')->paginate(16);
@@ -147,27 +152,6 @@ class AbsenceController extends Controller
     public function ekspor()
     {
         return view('absence.ekspor');
-    }
-
-    public function ekspor_data(Request $request)
-    {
-        $atlets = Atlet::all();
-        $awal = $request->tanggal_awal;
-        $akhir = $request->tanggal_akhir;
-        $year = date('Y', strtotime($awal));
-        $tanggal_paraf = date('d F Y', strtotime($akhir));
-        $dataAbsen = Absence::whereBetween('tanggal', [$awal, $akhir])->get();
-        $dataKehadiran = Attendance::whereBetween('tanggal', [$awal, $akhir])->get();
-        // $tanggal_kehadiran = date('d-m-Y', strtotime($dataAbsen->tanggal));
-        $bulan = date('m', strtotime($awal));
-        return view('absence.print', compact(
-            'dataAbsen', 
-            'dataKehadiran', 
-            'year', 
-            'tanggal_paraf', 
-            'bulan',
-            'atlets',
-        ));
     }
 
     public function ekspor_lain($id)

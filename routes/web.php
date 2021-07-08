@@ -9,9 +9,9 @@ use App\Http\Controllers\TeamController;
 Route::get('/', function () {
     return view('login');
 });
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
 Route::get('/table-score', function () {
     return view('table-score');
 });
@@ -24,3 +24,7 @@ Route::get('absensi/ekspor-lain/{id}', [AbsenceController::class, 'ekspor_lain']
 Route::resource('absensi', AbsenceController::class);
 Route::resource('pair-match', PairController::class);
 Route::resource('team-match', TeamController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

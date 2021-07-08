@@ -1,13 +1,11 @@
-@extends('layouts.app')
+@extends('layouts-kita.app')
 
 @section('title')
 	Absensi
 @endsection
 
 @section('tombol-nav')
-<div class="btn-toolbar mb-2 mb-md-0">
-	<a href="/absensi/ekspor" class="btn btn-success btn-sm">Ekspor Absensi Pelatkab</a>
-</div>
+
 @endsection
 
 @section('content')
