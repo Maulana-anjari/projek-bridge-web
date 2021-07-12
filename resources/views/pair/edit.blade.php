@@ -158,14 +158,17 @@
 			</div>
 			<div class="row mb-2 form-group">
 				<label for="file_pair" class="col-sm-2 col-form-label">Hasil Match</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair') ? old('file_pair') : $data_pair->file_pair}}">
+				<div class="col-sm-6">
+					<input type="file" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair') ? old('file_pair') : $data_pair->file_pair}}">
 					@error('file_pair')
 						<div class="alert alert-danger mt-2">{{$message}}</div>
 					@enderror
 				</div>
 				<div class="col-sm-2">
-					<a href="" class="btn btn-success float-end">Unduh</a>
+					<a href="pair-match/{{$data_pair->file_pair}}/download" class="btn btn-success float-end">Unduh</a>
+				</div>
+				<div class="col-sm-2">
+					<a href="pair-match/{{$data_pair->id}}/hapus_file" class="btn btn-danger float-end">Hapus</a>
 				</div>
 			</div>
 	    	<button type="submit" class="btn btn-sm btn-primary"><span class="icon"></span>Simpan</button>

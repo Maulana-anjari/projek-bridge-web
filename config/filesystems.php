@@ -53,6 +53,21 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'google' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_REFRESH_TOKEN'),
+            'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
+        ],
+
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'authorizationToken' => env('DROPBOX_ACCESS_TOKEN'),
+            'appKey' => env('DROPBOX_KEY'),
+            'appSecret' => env('DROPBOX_SECRET'),
+        ],
+
     ],
 
     /*

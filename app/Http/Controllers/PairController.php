@@ -19,6 +19,7 @@ class PairController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
     
     public function index()
@@ -45,23 +46,36 @@ class PairController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kategori' => 'required',
-            'kegiatan' => 'required',
-            'hari' => 'required',
-            'tanggal' => 'required',
-            'tempat' => 'required',
-            'file_pair' => 'required',
-        ]);
-        Pair::create([
-            'kategori' => $request->kategori,
-            'kegiatan' => $request->kegiatan,
-            'hari' => $request->hari,
-            'tanggal' => $request->tanggal,
-            'tempat' => $request->tempat,
-            'file_pair' => $request->file_pair,
-        ]);
-        return redirect('pair-match')->with('status', 'Data berhasil ditambahkan');
+        try {
+            $request->validate([
+                'kategori'  => 'required',
+                'kegiatan'  => 'required',
+                'hari'      => 'required',
+                'tanggal'   => 'required',
+                'tempat'    => 'required',
+                'file_pair' => 'required',
+            ]);
+            if ($request->hasFile('file_pair')) {
+                $file = $request->file('file_pair');
+                $fileExtension = $file->getClientOriginalExtension();
+                $newName       = uniqid() . '.' . $fileExtension;
+
+                Storage::disk('dropbox')->putFileAs('Pair-Match/', $file, $newName);
+                $this->dropbox->createSharedLinkWithSettings('Pair-Match/{$newName}');
+                
+                Pair::create([
+                    'kategori'  => $request->kategori,
+                    'kegiatan'  => $request->kegiatan,
+                    'hari'      => $request->hari,
+                    'tanggal'   => $request->tanggal,
+                    'tempat'    => $request->tempat,
+                    'file_pair' => $newName,
+                ]);
+                return redirect('pair-match')->with('status', 'Data berhasil ditambahkan');
+            }
+        } catch (Exception $e) {
+            return "Message : {$e->getMessage()}";
+        }
     }
 
     /**
@@ -78,6 +92,29 @@ class PairController extends Controller
         return view('pair.single', compact('pair'));
     }
 
+    public function lihat_file($fileTitle)
+    {
+        try {
+            $link = $this->dropbox->listSharedLinks('Pair-Match/' . $fileTitle);
+            $raw  = explode("?", $link[0]['url']);
+            $path = $raw[0] . '?raw=1';
+            $tempPath = tepnam(sys_get_temp_dir(), $path);
+            $copy     = copy($path, $tempPath);
+
+            return response()->file($tempPath);
+        } catch (Exception $e) {
+            return abort(404);
+        }
+    }
+
+    public function download($fileTitle)
+    {
+        try {
+            return Storage::disk('dropbox')->download('Pair-Match/' . $fileTitle);
+        } catch (Exception $e) {
+            return abort(404);
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -99,15 +136,28 @@ class PairController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Pair::find($id)->update([
-            'kategori' => $request->kategori,
-            'kegiatan' => $request->kegiatan,
-            'hari' => $request->hari,
-            'tanggal' => $request->tanggal,
-            'tempat' => $request->tempat,
-            'file_pair' => $request->file_pair,
-        ]);
-        return redirect()->back()->with('status', 'Data berhasil diupdate');
+        try {
+            if ($request->hasFile('file_pair')) {
+                $file = $request->file('file_pair');
+                $fileExtension = $file->getClientOriginalExtension();
+                $newName       = uniqid() . '.' . $fileExtension;
+
+                Storage::disk('dropbox')->putFileAs('Pair-Match/', $file, $newName);
+                $this->dropbox->createSharedLinkWithSettings('Pair-Match/' . $newName);
+                
+                Pair::find($id)->update([
+                    'kategori'  => $request->kategori,
+                    'kegiatan'  => $request->kegiatan,
+                    'hari'      => $request->hari,
+                    'tanggal'   => $request->tanggal,
+                    'tempat'    => $request->tempat,
+                    'file_pair' => $newName,
+                ]);
+            return redirect()->back()->with('status', 'Data berhasil diupdate');
+            }
+        } catch (Exception $e) {
+            return "Message : {$e->getMessage()}";
+        }
     }
 
     /**
@@ -118,7 +168,30 @@ class PairController extends Controller
      */
     public function destroy($id)
     {
-        Pair::find($id)->delete();
-        return redirect()->back()->with('destroy', 'Data berhasil dihapus');
+        try {
+            $file = Pair::find($id);
+            Storage::disk('dropbox')->delete('Pair-Match/' . $file->file_pair);
+            $file->delete();
+
+            return redirect()->back()->with('destroy', 'Data berhasil dihapus');
+        } catch (Exception $e) {
+            return abort(404);
+        }
+    }
+
+    public function hapus_file($id)
+    {
+        try {
+            $file = Pair::find($id);
+            Storage::disk('dropbox')->delete('Pair-Match/' . $file->file_pair);
+            return redirect()->back()->with('destroy', 'File berhasil dihapus');
+        } catch (Exception $e) {
+            return abort(404);
+        }
+    }
+
+    public function upload(Request $request)
+    {
+    
     }
 }

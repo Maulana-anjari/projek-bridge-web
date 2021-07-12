@@ -23,6 +23,9 @@ Route::get('absensi/ekspor-data', [AbsenceController::class, 'ekspor_data']);
 Route::get('absensi/ekspor-lain/{id}', [AbsenceController::class, 'ekspor_lain']);
 Route::resource('absensi', AbsenceController::class);
 Route::resource('pair-match', PairController::class);
+Route::get('pair-match/{fileTitle}', [PairController::class, 'lihat_file']);
+Route::get('pair-match/{fileTitle}/download', [PairController::class, 'download']);
+Route::get('pair-match/{id}/hapus_file', [PairController::class, 'hapus_file']);
 Route::resource('team-match', TeamController::class);
 
 Auth::routes();
