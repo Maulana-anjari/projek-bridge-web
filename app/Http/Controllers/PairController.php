@@ -98,7 +98,7 @@ class PairController extends Controller
             $link = $this->dropbox->listSharedLinks('Pair-Match/' . $fileTitle);
             $raw  = explode("?", $link[0]['url']);
             $path = $raw[0] . '?raw=1';
-            $tempPath = tepnam(sys_get_temp_dir(), $path);
+            $tempPath = tempnam(sys_get_temp_dir(), $path);
             $copy     = copy($path, $tempPath);
 
             return response()->file($tempPath);
@@ -184,6 +184,9 @@ class PairController extends Controller
         try {
             $file = Pair::find($id);
             Storage::disk('dropbox')->delete('Pair-Match/' . $file->file_pair);
+            Pair::find($id)->update([
+                    'file_pair' => null,
+                ]);
             return redirect()->back()->with('destroy', 'File berhasil dihapus');
         } catch (Exception $e) {
             return abort(404);
