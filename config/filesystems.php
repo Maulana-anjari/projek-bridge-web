@@ -63,9 +63,10 @@ return [
 
         'dropbox' => [
             'driver' => 'dropbox',
-            'authorizationToken' => env('DROPBOX_ACCESS_TOKEN'),
+            'authorizationToken' => env('DROPBOX_ACCESS_TOKEN', ''),
             'appKey' => env('DROPBOX_KEY'),
             'appSecret' => env('DROPBOX_SECRET'),
+            'scopes' => 'account_info.read files.metadata.write files.metadata.read files.content.write files.content.read',
         ],
 
     ],

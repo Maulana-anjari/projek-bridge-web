@@ -61,7 +61,7 @@ class PairController extends Controller
                 $newName       = uniqid() . '.' . $fileExtension;
 
                 Storage::disk('dropbox')->putFileAs('Pair-Match/', $file, $newName);
-                $this->dropbox->createSharedLinkWithSettings('Pair-Match/{$newName}');
+                $this->dropbox->createSharedLinkWithSettings('Pair-Match/' . $newName);
                 
                 Pair::create([
                     'kategori'  => $request->kategori,

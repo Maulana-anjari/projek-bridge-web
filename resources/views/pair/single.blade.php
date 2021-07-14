@@ -49,10 +49,10 @@
 				<div class="row mb-2 form-group">
 					<div class="col-2">Hasil Match</div>
 					<div class="col-4">: 
-						<a href="pair-match/{{$pair->file_pair}}">{{$pair->file_pair}}</a>
+						<a href="{{$pair->file_pair}}/preview" target="_blank">{{$pair->file_pair}}</a>
 					</div>
 				</div>
-				<a href="pair-match/{{$data_pair->file_pair}}/download" class="btn btn-sm btn-success">Unduh Hasil Match</a>
+				<a href="{{$pair->file_pair}}/download" class="btn btn-sm btn-success">Unduh Hasil Match</a>
 				<a href="/team-match" class="btn btn-sm btn-outline-secondary">Kembali</a>
 			</div>
 		</div>
