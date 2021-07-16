@@ -33,10 +33,10 @@
 		<strong>{{ $message }}</strong>
 	</div>
 	@endif
-	<div class="row mb-2 form-group">
+	<div class="row mb-2 urutan">
 		<label for="urutan" class="col-sm-2 col-form-label">Urutkan Berdasarkan :</label>
-		<div class="btn-toolbar mb-2 mb-md-0 col">
-			<div class="btn-group me-3">
+		<div class="btn-toolbar mb-md-0 col btn-sm">
+			<div class="btn-group me-3 btn-sm">
 		    <a class="btn btn-sm btn-outline-dark" href="atlet">Nama Ascending</a>
 		    <a class="btn btn-sm btn-outline-secondary" href="atlet-desc">Nama Descending</a>
 		    <a class="btn btn-sm btn-outline-dark" href="atlet-desc-id">Terakhir ditambahkan</a>

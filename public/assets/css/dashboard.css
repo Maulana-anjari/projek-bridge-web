@@ -28,7 +28,7 @@ body {
 
 @media (max-width: 767.98px) {
   .sidebar {
-    top: 5rem;
+    top: 4rem;
   }
 }
 
@@ -68,7 +68,6 @@ body {
 /*
  * Navbar
  */
-
 .navbar-brand {
   padding-top: .75rem;
   padding-bottom: .75rem;
@@ -78,7 +77,7 @@ body {
 }
 
 .navbar .navbar-toggler {
-  top: .25rem;
+  top: .5rem;
   right: 1rem;
 }
 
@@ -122,3 +121,5 @@ body {
 .sidebar ul li a:hover {
   background-color: #adb5bd;
 }
+
+

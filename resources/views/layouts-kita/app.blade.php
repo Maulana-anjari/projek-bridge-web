@@ -39,7 +39,7 @@
 	  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="show" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <div class="tagline">Gabungan Bridge Kulon Progo</div>
+	  <div class="text-light">Gabungan Bridge Kulon Progo</div>
 	  <div class="navbar-nav">
 	    <div class="nav-item text-nowrap">
 	    	<form id="logout-form" action="{{ route('logout') }}" method="POST">

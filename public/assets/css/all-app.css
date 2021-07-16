@@ -29,3 +29,10 @@
 .btn-sign-out button:hover {
 	color: #0071bc;
 }
+
+.urutan {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	
+}
