@@ -88,7 +88,7 @@
         <p class="mb-0">Kulon Progo, {{ $tanggal_paraf }}</p>
         <p>Manajer</p>
         <br><br><br><br>
-        <p>Heru Sarjana, S.Pd</p>
+        <p>HERU SARJANA, S.Pd</p>
       </div>
     </div>
   </section>

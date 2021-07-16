@@ -7,8 +7,7 @@
 @section('tombol-nav')
 <div class="btn-toolbar mb-2 mb-md-0">
 	<div class="btn-group me-2">
-	    <a href="/atlet/create" type="button" class="btn btn-sm btn-outline-dark"><span class="icon"></span>Tambah</a>
-	    <a href="" type="button" class="btn btn-sm btn-outline-secondary"><span class="icon"></span>Ekspor</a>
+	    <a href="/atlet/create" type="button" class="btn btn-sm btn-primary"><span class="icon"></span>Tambah Atlet</a>
 	</div>
 </div>
 @endsection
@@ -34,13 +33,23 @@
 		<strong>{{ $message }}</strong>
 	</div>
 	@endif
+	<div class="row mb-2 form-group">
+		<label for="urutan" class="col-sm-2 col-form-label">Urutkan Berdasarkan :</label>
+		<div class="btn-toolbar mb-2 mb-md-0 col">
+			<div class="btn-group me-3">
+		    <a class="btn btn-sm btn-outline-dark" href="atlet">Nama Ascending</a>
+		    <a class="btn btn-sm btn-outline-secondary" href="atlet-desc">Nama Descending</a>
+		    <a class="btn btn-sm btn-outline-dark" href="atlet-desc-id">Terakhir ditambahkan</a>
+			</div>
+		</div>
+	</div>
 <table class="table table-hover">
 	<thead>
 		<tr>
 			<th scope="col">No</th>
 			<th scope="col">Nama</th>
 			<th scope="col">Alamat</th>
-			<th scope="col">Event</th>
+			<th scope="col">Aksi</th>
 		</tr>
 	</thead>
 	<tbody>

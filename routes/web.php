@@ -5,14 +5,15 @@ use App\Http\Controllers\AbsenceController;
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\PairController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ScoreController;
 
 Route::get('/', function () {
     return view('login');
 });
-Route::get('/table-score', function () {
-    return view('table-score');
-});
+Route::get('table-score', [ScoreController::class, 'index']);
 Route::resource('atlet', AthleteController::class);
+Route::get('atlet-desc', [AthleteController::class, 'index_desc']);
+Route::get('atlet-desc-id', [AthleteController::class, 'index_desc_id']);
 Route::post('absensi/atlet', [AbsenceController::class, 'absen_atlet']);
 Route::delete('absensi/atlet/{id}', [AbsenceController::class, 'delete_absen_atlet']);
 Route::get('absensi/ekspor', [AbsenceController::class, 'ekspor']);

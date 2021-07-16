@@ -20,10 +20,21 @@ class AthleteController extends Controller
     
     public function index()
     {
-        $atlets = Atlet::orderby('id', 'asc')->paginate(20);
+        $atlets = Atlet::orderby('nama', 'asc')->paginate(20);
         return view('athlete.index', compact('atlets'));
     }
 
+    public function index_desc()
+    {
+        $atlets = Atlet::orderby('nama', 'desc')->paginate(20);
+        return view('athlete.index', compact('atlets'));
+    }
+
+    public function index_desc_id()
+    {
+        $atlets = Atlet::orderby('id', 'desc')->paginate(20);
+        return view('athlete.index', compact('atlets'));
+    }
     /**
      * Show the form for creating a new resource.
      *
