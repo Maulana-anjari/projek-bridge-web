@@ -4,7 +4,7 @@
 	Edit Team Match
 @endsection
 @section('menu')
-	<a href="/team-match" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
+	<a href="/team-match" class="btn btn-outline-secondary btn-sm">Kembali</a>
 @endsection
 
 @section('content')
@@ -158,15 +158,21 @@
 			</div>
 			<div class="row mb-2 form-group">
 				<label for="file_team" class="col-sm-2 col-form-label">Hasil Match</label>
+				@if($data_team->file_team != NULL)
 				<div class="col-sm-8">
 					<input type="text" class="form-control shadow-sm" id="file_team" name="file_team" value="{{old('file_team') ? old('file_team') : $data_team->file_team}}">
+				</div>
+				<div class="col-sm-2">
+					<a href="hapus_file" class="btn btn-danger float-end">Hapus</a>
+				</div>
+				@else
+				<div class="col-sm-10">
+					<input type="file" class="form-control shadow-sm" id="file_team" name="file_team" value="{{old('file_team') ? old('file_team') : $data_team->file_team}}">
 					@error('file_team')
 						<div class="alert alert-danger mt-2">{{$message}}</div>
 					@enderror
 				</div>
-				<div class="col-sm-2">
-					<a href="" class="btn btn-success float-end">Unduh</a>
-				</div>
+				@endif
 			</div>
 	    	<button type="submit" class="btn btn-sm btn-primary"><span class="icon"></span>Simpan</button>
 	    	<a href="/team-match" class="btn btn-sm btn-outline-secondary">Kembali</a>

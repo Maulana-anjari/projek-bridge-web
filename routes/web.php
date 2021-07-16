@@ -9,9 +9,6 @@ use App\Http\Controllers\TeamController;
 Route::get('/', function () {
     return view('login');
 });
-// Route::get('/home', function () {
-//     return view('home');
-// });
 Route::get('/table-score', function () {
     return view('table-score');
 });
@@ -23,10 +20,13 @@ Route::get('absensi/ekspor-data', [AbsenceController::class, 'ekspor_data']);
 Route::get('absensi/ekspor-lain/{id}', [AbsenceController::class, 'ekspor_lain']);
 Route::resource('absensi', AbsenceController::class);
 Route::resource('pair-match', PairController::class);
-Route::get('pair-match/{fileTitle}/preview', [PairController::class, 'lihat_file']);
+Route::get('pair-match/preview/{fileTitle}', [PairController::class, 'lihat_file']);
 Route::get('pair-match/{fileTitle}/download', [PairController::class, 'download']);
 Route::get('pair-match/{id}/hapus_file', [PairController::class, 'hapus_file']);
 Route::resource('team-match', TeamController::class);
+Route::get('team-match/preview/{fileTitle}', [TeamController::class, 'lihat_file']);
+Route::get('team-match/{fileTitle}/download', [TeamController::class, 'download']);
+Route::get('team-match/{id}/hapus_file', [TeamController::class, 'hapus_file']);
 
 Auth::routes();
 

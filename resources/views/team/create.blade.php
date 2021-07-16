@@ -89,7 +89,7 @@
 			<div class="row mb-2 form-group">
 				<label for="file_team" class="col-sm-2 col-form-label">Hasil Match</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control shadow-sm" id="file_team" name="file_team" value="{{old('file_team')}}">
+					<input type="file" class="form-control shadow-sm" id="file_team" name="file_team" value="{{old('file_team')}}">
 					@error('file_team')
 						<div class="alert alert-danger mt-2">{{$message}}</div>
 					@enderror

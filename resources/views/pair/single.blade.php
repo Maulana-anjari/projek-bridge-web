@@ -4,7 +4,7 @@
 	Pair Match
 @endsection
 @section('menu')
-	<a href="/absensi" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
+	<a href="/pair-match" class="btn btn-outline-secondary btn-sm">Kembali</a>
 @endsection
 
 @section('content')
@@ -49,11 +49,11 @@
 				<div class="row mb-2 form-group">
 					<div class="col-2">Hasil Match</div>
 					<div class="col-4">: 
-						<a href="{{$pair->file_pair}}/preview" target="_blank">{{$pair->file_pair}}</a>
+						<a href="preview/{{$pair->file_pair}}" target="_blank">{{$pair->file_pair}}</a>
 					</div>
 				</div>
 				<a href="{{$pair->file_pair}}/download" class="btn btn-sm btn-success">Unduh Hasil Match</a>
-				<a href="/team-match" class="btn btn-sm btn-outline-secondary">Kembali</a>
+				<a href="/pair-match" class="btn btn-sm btn-outline-secondary">Kembali</a>
 			</div>
 		</div>
 	</div>

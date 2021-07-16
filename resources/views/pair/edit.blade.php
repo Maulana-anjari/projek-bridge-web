@@ -4,7 +4,7 @@
 	Edit Pair Match
 @endsection
 @section('menu')
-	<a href="/absensi" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
+	<a href="/pair-match" class="btn btn-outline-secondary btn-sm">Kembali</a>
 @endsection
 
 @section('content')
@@ -158,18 +158,19 @@
 			</div>
 			<div class="row mb-2 form-group">
 				<label for="file_pair" class="col-sm-2 col-form-label">Hasil Match</label>
-				<div class="{{ ($data_pair->file_pair != NULL) ? 'col-sm-6' : 'col-sm-8' }}">
-					<input type="file" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair') ? old('file_pair') : $data_pair->file_pair}}">
-					@error('file_pair')
-						<div class="alert alert-danger mt-2">{{$message}}</div>
-					@enderror
-				</div>
 				@if($data_pair->file_pair != NULL)
-				<div class="col-sm-2">
+				<div class="col-sm-8">
 					<input type="text" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair') ? old('file_pair') : $data_pair->file_pair}}">
 				</div>
 				<div class="col-sm-2">
 					<a href="hapus_file" class="btn btn-danger float-end">Hapus</a>
+				</div>
+				@else
+				<div class="col-sm-10">
+					<input type="file" class="form-control shadow-sm" id="file_pair" name="file_pair" value="{{old('file_pair') ? old('file_pair') : $data_pair->file_pair}}">
+					@error('file_pair')
+						<div class="alert alert-danger mt-2">{{$message}}</div>
+					@enderror
 				</div>
 				@endif
 			</div>

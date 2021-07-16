@@ -8,7 +8,6 @@
 <div class="btn-toolbar mb-2 mb-md-0">
 	<div class="btn-group me-2">
 	    <a href="/team-match/create" class="btn btn-dark btn-sm">Tambah</a>
-	    <a href="/team-match/ekspor" class="btn btn-outline-dark btn-sm">Ekspor</a>
 	</div>
 </div>
 @endsection

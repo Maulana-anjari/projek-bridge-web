@@ -4,7 +4,7 @@
 	Team Match
 @endsection
 @section('menu')
-	<a href="/team-match" class="btn btn-outline-secondary btn-sm">Daftar Absensi</a>
+	<a href="/team-match" class="btn btn-outline-secondary btn-sm">Kembali</a>
 @endsection
 
 @section('content')
@@ -48,9 +48,11 @@
 				</div>
 				<div class="row mb-2 form-group">
 					<div class="col-2">Hasil Match</div>
-					<div class="col-4">: {{$team->file_team}}</div>
+					<div class="col-4">: 
+						<a href="preview/{{$team->file_team}}" target="_blank">{{$team->file_team}}</a>
+					</div>
 				</div>
-				<a href="" class="btn btn-sm btn-success">Unduh Hasil Match</a>
+				<a href="{{$team->file_team}}/download" class="btn btn-sm btn-success">Unduh Hasil Match</a>
 				<a href="/team-match" class="btn btn-sm btn-outline-secondary">Kembali</a>
 			</div>
 		</div>

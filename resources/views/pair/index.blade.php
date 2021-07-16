@@ -3,11 +3,11 @@
 @section('title')
 	Pair Match
 @endsection
+
 @section('tombol-nav')
 <div class="btn-toolbar mb-2 mb-md-0">
 	<div class="btn-group me-2">
 	    <a href="/pair-match/create" class="btn btn-dark btn-sm">Tambah</a>
-	    <a href="/pair-match/ekspor" class="btn btn-outline-dark btn-sm">Ekspor</a>
 	</div>
 </div>
 @endsection
@@ -26,6 +26,7 @@
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>		
 	</div>
 @endif
+
 <div class="card">
 	<div class="card-body">
 		<div class="row row-cols-1 row-cols-md-2 g-4 mb-2">

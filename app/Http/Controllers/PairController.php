@@ -56,9 +56,12 @@ class PairController extends Controller
                 'file_pair' => 'required',
             ]);
             if ($request->hasFile('file_pair')) {
-                $file = $request->file('file_pair');
+                $file          = $request->file('file_pair');
                 $fileExtension = $file->getClientOriginalExtension();
-                $newName       = uniqid() . '.' . $fileExtension;
+                $judul         = $request->kategori;
+                $pair          = 'Pair';
+                $date          = $request->tanggal;
+                $newName       = $pair . '-' . $judul . '-' .$date . '.' . $fileExtension;
 
                 Storage::disk('dropbox')->putFileAs('Pair-Match/', $file, $newName);
                 $this->dropbox->createSharedLinkWithSettings('Pair-Match/' . $newName);
@@ -86,7 +89,7 @@ class PairController extends Controller
      */
     public function show($id)
     {
-        $pair = Pair::find($id)->first();
+        $pair = Pair::find($id);
         if($pair == null)
             abort(404);
         return view('pair.single', compact('pair'));
@@ -140,7 +143,10 @@ class PairController extends Controller
             if ($request->hasFile('file_pair')) {
                 $file = $request->file('file_pair');
                 $fileExtension = $file->getClientOriginalExtension();
-                $newName       = uniqid() . '.' . $fileExtension;
+                $judul         = $request->kategori;
+                $pair          = 'Pair';
+                $date          = $request->tanggal;
+                $newName       = $pair . '-' . $judul . '-' .$date . '.' . $fileExtension;
 
                 Storage::disk('dropbox')->putFileAs('Pair-Match/', $file, $newName);
                 $this->dropbox->createSharedLinkWithSettings('Pair-Match/' . $newName);
@@ -191,10 +197,5 @@ class PairController extends Controller
         } catch (Exception $e) {
             return abort(404);
         }
-    }
-
-    public function upload(Request $request)
-    {
-    
     }
 }
